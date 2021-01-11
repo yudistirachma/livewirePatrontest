@@ -20,7 +20,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('tamplate/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    @livewireStyles
+    @isset($livewire)
+        @livewireStyles
+    @endisset
 
 </head>
 
@@ -333,7 +335,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{route('updateProfile', ['id' => Auth::user()->id])}}">
+                                <a class="dropdown-item" href="{{route('updateProfile', ['user' => Auth::user()->id])}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -354,7 +356,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    @yield('content')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -415,7 +417,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('tamplate/js/sb-admin-2.min.js')}}"></script>
-    @livewireScripts
+    @isset($livewire)
+        @livewireScripts
+    @endisset
 
 
 </body>

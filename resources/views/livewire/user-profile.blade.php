@@ -5,15 +5,12 @@
                 <div class="m-0 font-weight-bold text-primary">Personal data information</div>
             </div>
             <div class="card-body">
-                <h1>{{$data}}</h1>
                 <form>
                     <div class="form-group">
                       <label for="name">Name</label>
-                      {{-- {{$data['aing'] }} --}}
-                      <input type="text" class="form-control" id="name" name="name" value="{{$data}}">
-                      {{-- {{dd($data['name'])}} --}}
+                      <input type="text" class="form-control" id="name" name="name" value="{{$data['name']}}">
                     </div>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="email" name="email" value="{{$data['email']}}" placeholder="aku@email.com">
                     </div>
@@ -28,7 +25,7 @@
                     <div class="form-group">
                       <label for="npwp">npwp (nomor pokok wajib pajak)</label>
                       <input type="num" class="form-control" id="npwp" name="npwp" value="{{$data['npwp']}}">
-                    </div> --}}
+                    </div>
                     <div class="float-right">
                         <button class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50"><li class="fas fa-check"></li></span>
