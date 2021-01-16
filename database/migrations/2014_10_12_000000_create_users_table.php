@@ -19,8 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phoneNum', '13')->nullable();
             $table->string('ktp', '16')->nullable();
-            $table->string('kk', '16')->nullable();
             $table->string('npwp', '16')->nullable();
+            $table->string('imgprofile', '191')->nullable();
+            $table->string('imgktp', '191')->nullable();
+            $table->string('imgnpwp', '191')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

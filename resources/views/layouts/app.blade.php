@@ -381,7 +381,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" href="#page-top" style="z-index: 10;">
         <i class="fas fa-angle-up"></i>
     </a>
 
