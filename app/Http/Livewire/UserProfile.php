@@ -79,7 +79,7 @@ class UserProfile extends Component
     public function render()
     {
         return view('livewire.user-profile')
-            ->extends('layouts.app', ['livewire' => true]);
+            ->extends('layouts.app', ['livewire' => true, 'title' => 'User Profile']);
     }
 
     private function img($imgName,$name)
