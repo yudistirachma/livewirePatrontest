@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 
 // user handle 
-Route::get('/user/list', 'EmployeController@index')->name('employesList');
+Route::get('/user/manage', 'UserController@index')->name('employesList');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -5,7 +5,7 @@
                 <div class="m-0 font-weight-bold text-primary">Personal data information</div>
                 @if (session()->has('profile'))                    
                     <div class="alert mt-3 mb-0 alert-success alert-dismissible fade show" role="alert">
-                        {{ session('message') }}
+                        {{ session('profile') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -55,6 +55,47 @@
                             <span class="text">Save</span>
                         </button>
                         <div class="btn btn-warning btn-icon-split" style="cursor:wait" wire:loading wire:target="profileUpdate">
+                            <span class="icon text-white-50"><li class="fas fa-info-circle"></li></span>
+                            <span class="text">loading....</span>   
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="m-0 font-weight-bold text-primary">Create new password</div>
+                @if (session()->has('password'))                    
+                    <div class="alert mt-3 mb-0 alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('password') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
+            <div class="card-body">
+                <form wire:submit.prevent="newPassword">
+                    <div class="form-group">
+                      <label for="password">New password</label>
+                      <input type="password" class="form-control @error('password') border-danger @enderror" autocomplete="off" id="password" name="password" wire:model.defer='password'>
+                      @error('password')
+                        <span class="text-danger"><small>{{$message}}</small></span>
+                      @enderror
+                    </div>
+                    <div class="form-group">
+                      <label for="confirmPassword">Confirm new password</label>
+                      <input type="password" class="form-control @error('confirmPassword') border-danger @enderror" autocomplete="off" id="confirmPassword" name="confirmPassword" wire:model.defer='confirmPassword'>
+                      @error('confirmPassword')
+                        <span class="text-danger"><small>{{$message}}</small></span>
+                      @enderror
+                    </div>
+                    <div class="float-right">
+                        <button class="btn btn-warning btn-icon-split" wire:loading.remove>
+                            <span class="icon text-white-50"><li class="fas fa-exclamation-triangle"></li></span>
+                            <span class="text">Reset Password</span>
+                        </button>
+                        <div class="btn btn-warning btn-icon-split" style="cursor:wait" wire:loading wire:target="newPassword">
                             <span class="icon text-white-50"><li class="fas fa-info-circle"></li></span>
                             <span class="text">loading....</span>   
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserProfile extends Component
@@ -14,8 +15,8 @@ class UserProfile extends Component
     public $data;
     public $userData;
     public $photo = [];
-    // public $photoKtp;
-    // public $photoNpwp;
+    public $password = null;
+    public $confirmPassword = null;
     public $typeData = ['png', 'gif', 'bmp', 'svg', 'wav', 'mp4',
                         'mov', 'avi', 'wmv', 'mp3', 'm4a',
                         'jpg','jpeg', 'mpga', 'webp', 'wma',];
@@ -80,6 +81,23 @@ class UserProfile extends Component
     {
         return view('livewire.user-profile')
             ->extends('layouts.app', ['livewire' => true, 'title' => 'User Profile']);
+    }
+
+    public function newPassword()
+    {
+        $this->validate([
+            'password' => 'required|min:8|required_with:confirmPassword|same:confirmPassword',
+            'confirmPassword' => 'required|min:8',
+        ]);
+
+        $this->userData->update([
+            'password' => Hash::make($this->password),            
+        ]);
+
+        $this->password = null;
+        $this->confirmPassword = null;
+
+        session()->flash('password', "{$this->password} password successfully change.");
     }
 
     private function img($imgName,$name)
