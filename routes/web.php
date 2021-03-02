@@ -11,7 +11,9 @@ Route::get('/', function () {
 
 
 // user handle 
-Route::get('/user/manage', 'UserController@index')->name('employesList');
+Route::get('/user/manage', 'UserController@index')->name('employesList')->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('group', 'GroupController@index')->name('group')->middleware('auth');
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
