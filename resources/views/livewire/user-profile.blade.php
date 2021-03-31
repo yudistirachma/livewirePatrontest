@@ -141,8 +141,8 @@
                 <form wire:submit.prevent="saveProfile" class="mt-4" wire:loading.remove wire:target="photo.profile">
                     <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" wire:model="photo.profile" class="custom-file-input" style="" id="inputGroupFile02">
-                          <label class="custom-file-label" style="" for="inputGroupFile02">file</label>
+                          <input type="file" wire:model="photo.profile" class="custom-file-input">
+                          <label class="custom-file-label" for="inputGroupFile02">file</label>
                         </div>
                         <div class="input-group-append">
                         @isset($photo['profile']) <button type="submit" alt="save" class="btn btn-outline-primary"> <i class="far fa-save"></i> </button> @endisset
@@ -187,8 +187,8 @@
                 <form wire:submit.prevent="saveKtp" class="mt-4" wire:loading.remove wire:target="photo.ktp">
                     <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" wire:model="photo.ktp" class="custom-file-input" style="" id="inputGroupFile02">
-                          <label class="custom-file-label" style="" for="inputGroupFile02">file</label>
+                          <input type="file" wire:model="photo.ktp" class="custom-file-input">
+                          <label class="custom-file-label" for="inputGroupFile02">file</label>
                         </div>
                         <div class="input-group-append">
                         @isset($photo['ktp']) <button type="submit" alt="save" class="btn btn-outline-primary"> <i class="far fa-save"></i> </button> @endisset
@@ -233,8 +233,8 @@
                 <form wire:submit.prevent="saveNpwp" class="mt-4" wire:loading.remove wire:target="photo.npwp">
                     <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" wire:model="photo.npwp" class="custom-file-input" style="" id="inputGroupFile02">
-                          <label class="custom-file-label" style="" for="inputGroupFile02">file</label>
+                          <input type="file" wire:model="photo.npwp" class="custom-file-input">
+                          <label class="custom-file-label" for="inputGroupFile02">file</label>
                         </div>
                         <div class="input-group-append">
                         @isset($photo['npwp']) <button type="submit" alt="save" class="btn btn-outline-primary"> <i class="far fa-save"></i> </button> @endisset

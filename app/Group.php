@@ -7,13 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $fillable = [
-        "name", "segment", "desc", "user_id", "status"
+        "segment", "desc", "user_id", "status"
     ];
     
-
     public function users()
     {
         return $this->belongsToMany('App\User');
+    }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function contens()
+    {
+        return $this->hasMany('App\Content');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Note');
     }
 }

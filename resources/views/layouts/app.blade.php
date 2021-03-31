@@ -23,7 +23,11 @@
     @isset($livewire)
         @livewireStyles
     @endisset
-
+    @isset($tinymce)
+        {{-- text editor WYSIWYG tinymce --}}
+        <script src="{{ asset('tamplate/vendor/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+        {{-- <script src="https://cdn.tiny.cloud/1/ipgx6lqgnxjv7k6r5fs53rsqvx0agxuqf9sos17sqabms3v1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
+    @endisset
 </head>
 
 <body id="page-top">
@@ -33,6 +37,11 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <script>
+                if (screen.width <= 425 ) {
+                    document.getElementById("accordionSidebar").classList.add("toggled");
+                }
+            </script>
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -46,38 +55,74 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
+            @if (Auth::user()->roles[0]->name == 'pimpinan redaktur')
+
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                PIMRED
             </div>
 
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('employesList') }}" style="color:white">
+                    <i class="fas fa-users-cog" style="color: white"></i>
+                    <span>User Manage</span></a>
+            </li>
+                            
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+            <li class="nav-item ">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="color:white">
+                    <i class="fas fa-chalkboard-teacher" style="color:white"></i>
+                    <span>Manage Group</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
+                        <h6 class="collapse-header">Manage</h6>
+                        <a class="collapse-item" href="{{ route('listGroup') }}">List Group</a>
+                        <a class="collapse-item" href="{{ route('groupCreate') }}">Create Group</a>
+                    </div>                    
                 </div>
             </li>
+            @endif
+            
+            @if (Auth::user()->roles[0]->name == 'redaktur')
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Redaktur
+            </div>
+
+            <li class="nav-item  ">
+                <a class="nav-link" href="{{ route('redakturGroup') }}" style="color:white">
+                    <i class="fas fa-chalkboard" style="color:white"></i>
+                    <span>Redaktur Group</span></a>
+            </li>
+            @endif
+
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Jurnalis
+            </div>
+
+            <li class="nav-item " style="color:white">
+                <a class="nav-link" href="{{ route('myGroup') }}" style="color:white">
+                    <i class="fas fa-tasks" style="color:white"></i>
+                    <span>My Group</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -105,7 +150,7 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        <li class="nav-item  dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -158,7 +203,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        <li class="nav-item  dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
@@ -253,6 +298,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('tamplate/js/sb-admin-2.min.js')}}"></script>
+    {{-- <script src=" {{asset('tamplate/vendor/tinymce/tinymce.config.js')}} "></script> --}}
     @isset($livewire)
         @livewireScripts
     @endisset

@@ -3,7 +3,6 @@
         <div class="card-header py-3">
             <div class="d-flex justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary my-auto">User list</h6>
-                
                 <div>
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"wire:submit.prevent="updatingSearch" >
                         <div class="input-group">
@@ -26,7 +25,7 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Position</th>
-                        <th scope="col">Status</th>
+                        <th scope="col align-middle">Manage</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,7 +40,9 @@
                             @else
                                 belum {{$employ->name}}
                             @endif
-                            <td class="align-middle">Active</td>
+                            <td class="align-middle">
+                                &nbsp;&nbsp; <a class="btn btn-light btn-circle btn-sm" href="{{ route('employeManage', $employ->id) }}" ><i class="fas fa-tasks"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -56,13 +57,19 @@
         </div>
         <div class="card-body">
             @if (session()->has('userCreate'))
-                <div class="alert alert-success">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('userCreate') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             @endif
             @if (session()->has('userFailed'))
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('userFailed') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
             @endif
             <form wire:submit.prevent="createUser">
@@ -96,4 +103,3 @@
             </form>
         </div>
     </div>
-</div>

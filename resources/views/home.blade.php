@@ -13,6 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if (session()->has("userManage"))
+          <div class="alert alert-success col-lg my-auto">
+            {!! session('userManage') !!}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+      @endif
 
                     {{ __('You are logged in!') }}
                 </div>

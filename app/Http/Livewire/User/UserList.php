@@ -13,7 +13,7 @@ class UserList extends Component
 {
     use WithPagination;
 
-    public $name, $email, $position, $positionList ;
+    public $name, $email, $position, $positionList, $userManage ;
 
     public $search = '';
 
@@ -48,12 +48,16 @@ class UserList extends Component
         if ($user == true) {
             event(new RegisterUserEvent($this->name,$this->email,$this->position,$password));
             $user->assignRole($this->position);
-            session()->flash('userCreate', 'User employer account successfully created.');
+            session()->flash('userCreate', "{$this->name} account successfully created. Please cek {$this->email} for more information.");
         }else {
             session()->flash('userFailed', 'User employer account failed to be created. Please Check your internet connection !');
-        }  
+        }
+
+        $this->name = null;
+        $this->email = null;
+        $this->position = null;
     }
-       
+           
     public function render()
     {
         return view('livewire.user.user-list', ['users' =>  User::where('name', 'like', '%'.$this->search.'%')->orWhere('ktp', 'like', '%'.$this->search.'%')->paginate(5)] );

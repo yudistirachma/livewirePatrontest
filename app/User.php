@@ -42,4 +42,24 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Group');
     }
+
+    public function groupRedaktur()
+    {
+        return $this->hasMany('App\Group', 'user_id', 'id');
+    }
+
+    public function contents()
+    {
+        return $this->hasMany('App\Content');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Note');
+    }
 }

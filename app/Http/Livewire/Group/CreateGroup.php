@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Group;
 
+use App\Events\CreateGroupEvent;
 use App\Group;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +17,8 @@ class CreateGroup extends Component
     protected $listeners = ['newUser' => 'addUser'];
 
     protected $rules = [
-        'data.name' => 'required|max:50',
-        'data.segment' => 'required|max:50',
-        'data.description' => 'required|max:255',
+        'data.segment' => 'required|max:50|unique:groups,segment',
+        'data.description' => 'required|max:400',
         'redakturAdd' => 'required',
         'data.status' => 'required',
         'users' => 'required'
@@ -60,7 +60,6 @@ class CreateGroup extends Component
         $this->validate();
 
         $group = Group::create([
-            'name' => $this->data['name'],
             'segment' => $this->data['segment'],
             'desc' => $this->data['description'],
             'user_id' => $this->redakturAdd['id'],
@@ -82,17 +81,15 @@ class CreateGroup extends Component
         $hasil = DB::table('group_user')->insertOrIgnore($input);
 
         if ($hasil > 0) {
+            event(new CreateGroupEvent($group, $this->redakturAdd, $this->users));
+
             $this->users = [];
             $this->data = null;
-            session()->flash('groupCreated', 'Group successfully created.');
+
+            // session()->flash('groupCreated', 'Group successfully created.');
+
+            return Redirect::route('listGroup');
         }
-
-        return Redirect::route('home');
-    }
-
-    public function like()
-    {
-        dd($this->redakturAdd);
     }
 
     public function render()
@@ -111,7 +108,7 @@ class CreateGroup extends Component
                             $join->on('roles.id', '=', 'model_has_roles.role_id')
                                 ->where('role_id', '=', '2');
                         })
-                        ->select('users.name', 'users.imgprofile', 'users.id')
+                        ->select('users.name', 'users.imgprofile', 'users.id', 'users.email')
                         ->get()
             ]);
     }

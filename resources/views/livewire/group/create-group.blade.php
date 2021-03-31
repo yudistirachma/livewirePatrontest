@@ -3,16 +3,8 @@
         <form wire:submit.prevent="saveGroup">
 
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" class="form-control @error('data.name') border-danger @enderror" id="name" placeholder="name" wire:model.defer="data.name">
-                @error('data.name')
-                <span class="text-danger"><small>{{$message}}</small></span>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="segment">Segment</label>
-                <input type="text" name="segment" class="form-control @error('data.segment') border-danger @enderror" id="segment" placeholder="segment" wire:model.defer="data.segment">
+                <input type="text" name="segment" class="form-control @error('data.segment') border-danger @enderror" id="segment" wire:model.defer="data.segment" autocomplete="off">
                 @error('data.segment')
                 <span class="text-danger"><small>{{$message}}</small></span>
                 @enderror
@@ -47,7 +39,7 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control @error('data.description') border-danger @enderror" id="description" rows="3" name="description" wire:model.defer="data.description"></textarea>
+                <textarea class="form-control @error('data.description') border-danger @enderror" id="description" rows="5" name="description" wire:model.defer="data.description"></textarea>
                 @error('data.description')
                 <span class="text-danger"><small>{{$message}}</small></span>
                 @enderror
@@ -70,7 +62,7 @@
     </div>
     <div class="col-sm-7">
         <div class="card @error('users') border-danger @enderror">
-            <div class="card-body mx-auto" style="height: 450px;">
+            <div class="card-body mx-auto" style="height: 415px;">
                     @forelse ($users as $user)
                     <div style="display: inline-block; border" class="mr-1 mb-2 small rounded border p-1">
                         <img style="height: 30px;width :30px;" src="{{ isset($user['imgprofile']) ? asset('storage/'. $user['imgprofile']) : asset('tamplate/img/undraw_profile.svg') }}" alt="" class="img-profile rounded-circle mr-1">
@@ -82,7 +74,6 @@
                     </div>                 
                     @endforelse
             </div>
-            {{-- <button wire:click='like'>cek</button> --}}
         </div>
     </div>
     <!-- Modal redaktur -->
@@ -104,7 +95,7 @@
                                 </div>
                                 <div>
                                     <button class="btn btn-circle btn-sm btn-info" ><i class="fas fa-info"></i></button>
-                                    <button class="btn btn-circle btn-sm btn-primary" data-dismiss="modal"><i class="fas fa-user-plus" wire:click="addRedaktur({'id':'{{$employ->id}}','name':'{{$employ->name}}','imgprofile':'{{$employ->imgprofile}}'})"></i></button>
+                                    <button class="btn btn-circle btn-sm btn-primary" data-dismiss="modal"><i class="fas fa-user-plus" wire:click="addRedaktur({'id':'{{$employ->id}}','name':'{{$employ->name}}','imgprofile':'{{$employ->imgprofile}}','email':'{{$employ->email}}'})"></i></button>
                                 </div>
                             </div>
                         @empty
