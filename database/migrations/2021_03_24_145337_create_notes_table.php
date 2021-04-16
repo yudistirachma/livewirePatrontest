@@ -17,8 +17,8 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('group_id')->constrained('groups');
-            $table->mediumText('highlight');
-            $table->text('note');
+            $table->string('highlight');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

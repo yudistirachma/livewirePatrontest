@@ -206,7 +206,7 @@
                         <li class="nav-item  dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize">{{ Auth::user()->name }}</span>
                                 @if(isset(Auth::user()->imgprofile))
                                     <img class="img-profile rounded-circle"  src="{{asset('storage/'.Auth::user()->imgprofile)}}">
                                 @else
@@ -298,12 +298,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('tamplate/js/sb-admin-2.min.js')}}"></script>
-    {{-- <script src=" {{asset('tamplate/vendor/tinymce/tinymce.config.js')}} "></script> --}}
+
     @isset($livewire)
         @livewireScripts
     @endisset
 
 
 </body>
-
 </html>

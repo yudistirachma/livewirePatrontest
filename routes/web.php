@@ -28,18 +28,27 @@ Route::prefix('group')->middleware('auth')->group(function () {
     
     // all
     Route::get('/my', 'GroupController@my')->name('myGroup');
-    Route::get('/show/{group}', 'GroupController@show')->middleware('auth')->name('groupShow');
+    Route::get('/show/{group}', 'GroupController@show')->middleware('jurnalis')->name('groupShow');
 });
 
 Route::prefix('content')->middleware('auth')->group(function () {
-    Route::get('/create', 'ContentController@create')->name('contentCreate');
+    Route::get('/create/{group}', 'ContentController@create')->name('contentCreate');
     Route::put('/edit/{content}', 'ContentController@edit')->name('contentEdit');
 });
 
-Route::prefix('note')->middleware('auth')->group(function () {
-    Route::get('/create/{group}', 'NoteController@create')->name('noteCreate');
-    Route::put('/edit/{note}', 'NoteController@edit')->name('noteEdit');
-    Route::post('/save/{group}', 'NoteController@post')->name('noteSave');
+Route::prefix('note')->middleware('auth', 'jurnalis')->group(function () {
+    Route::get('/{note}', 'NoteController@show')->name('noteDetail');
+
+    Route::middleware('pimred_or_redaktur')->group(function (){
+        Route::get('/create/{group}', 'NoteController@create')->name('noteCreate');
+        Route::post('/{group}', 'NoteController@post')->name('noteSave');
+
+        Route::middleware('own')->group(function (){
+            Route::get('delete/{note}', 'NoteController@destroy')->name('noteDelete');
+            Route::get('/edit/{note}', 'NoteController@edit')->name('noteEdit');
+            Route::put('/edit/{note}', 'NoteController@update')->name('noteUpdate');
+        });
+    });
 });
 
 

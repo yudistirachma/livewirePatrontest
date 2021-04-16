@@ -44,7 +44,10 @@
             </div>
         </div>
         @empty
-        <h4 class="mx-auto">Group Empty</h4>
+        <div class="mx-auto mt-5 text-center">
+            <h1 class="fas fa-times-circle"></h1>
+            <h4 class="font-weight-bold">Group Empty</h4>
+        </div>
         @endforelse
     </div>
     {{ $groups->links() }}

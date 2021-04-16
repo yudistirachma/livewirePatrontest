@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Group;
-use App\Note;
-use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {

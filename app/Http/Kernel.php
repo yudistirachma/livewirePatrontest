@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'my_account' => \App\Http\Middleware\MyAccount::class,
+        'pimred_or_redaktur' => \App\Http\Middleware\PimredOrRedaktur::class,
+        'own' => \App\Http\Middleware\Own::class,
+        'jurnalis' => \App\Http\Middleware\Jurnalis::class,
     ];
 }

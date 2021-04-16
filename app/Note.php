@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    protected $fillable = ['user_id', 'note', 'group_id'];
+    protected $fillable = ['user_id', 'note', 'group_id', 'highlight'];
+
+    protected $attributes  = ['note' => ''] ;
 
     public function group()
     {

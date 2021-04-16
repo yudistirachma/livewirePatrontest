@@ -20,7 +20,7 @@ class Group extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
-    public function contens()
+    public function contents()
     {
         return $this->hasMany('App\Content');
     }

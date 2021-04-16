@@ -200,7 +200,12 @@
 
                             <div style="line-height: 35px">
 
-                                Announcement <span style="color: red;">Patron Media inspiration</span>
+                                <span style="color: red;">Patron Media inspiration</span>
+
+                            </div>
+                            <div style="line-height: 35px">
+
+                                <span ></span>Notification </span>
 
                             </div>
                         </td>
@@ -230,39 +235,16 @@
                                 <tr>
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
-
-                                        <p style="line-height: 24px; margin-bottom:15px;">
-
-                                            {{$name}},
-
-                                        </p>
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            Congratulations, you have joined the group <span style="color: red;">{{$group->name}}</span> 
+                                            <span style="font-weight: bold" >{{ $sender }} ({{ $role }})</span> have added a new note to the group
                                         </p>
-                                        <p style="line-height: 24px;margin-bottom:15px;font-weight: bold;">
-                                            Lead by <span style="font-weight: normal;">{{$redaktur}}</span> 
-                                            <br>
-                                            Segment <span style="font-weight: normal;" >{{$group->segment}}</span> 
-                                            <br><br>
-                                            Description
-                                            <br>
-                                            <span style="font-weight: normal;" >{{$group->desc}}</span>
-                                            <table align="center" style="margin-bottom: 15px;">
-                                                <tr>
-                                                  <th style="border: 1px #ddd solid; padding: 5px;">ID</th>
-                                                  <th style="border: 1px #ddd solid; padding: 5px;">Name</th>
-                                                </tr>
-                                                @foreach ($journalist as $jurnalis)
-                                                    <tr>
-                                                        <td style="border: 1px #ddd solid; padding: 5px;" >{{$jurnalis['id']}}</td>
-                                                        <td style="border: 1px #ddd solid; padding: 5px;">{{$jurnalis['name']}}</td>
-                                                  </tr>
-                                                @endforeach
-                                            </table>
-                                            
+
+                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                            <span style="font-weight: bold;" >( HiGHLIGHT )</span>  {{ $note->highlight }}
                                         </p>
+                                        
                                         <p style="line-height: 24px; margin-bottom:20px;">
-                                            You can cek group with click to the button link bellow.
+                                            Check the link below for details
                                         </p>
 
                                         <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="5caad2" style="margin-bottom:20px;">
@@ -276,7 +258,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;">
-                                                        <a href="http://localhost:8000/group/show/{{ $group->id }}" target="_blank" style="color: #ffffff; text-decoration: none;">Check Group</a>
+                                                        <a href="http://localhost:8000/note/{{ $note->id }}" target="_blank" style="color: #ffffff; text-decoration: none;">Check Note</a>
                                                     </div>
                                                 </td>
                                             </tr>

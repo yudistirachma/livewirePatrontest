@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CreateGroupEvent' => [
             'App\Listeners\SendNewGroupNotificationtListener'
         ],
+        'App\Events\CreateNoteEvent' => [
+            'App\Listeners\SendNoteNotificationtListener'
+        ],
     ];
 
     /**
