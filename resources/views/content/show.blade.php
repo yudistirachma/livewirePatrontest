@@ -1,60 +1,71 @@
-@extends('layouts.app', ['title' => 'Group Manage', 'livewire' => true, 'tinymce' => true])
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{-- csrf token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-capitalize">{{ $group->segment }} <small>( Note )</small></h6>
-        </div>
-        <div class="card-body">
-            <form action=" {{ route('noteSave',$group->id) }} " method="POST">
-                @method('POST')
-                @csrf
-                <div class="form-group">
-                    <label for="highlight" class="@error('highlight') text-danger @enderror">Highlight</label>
-                    <textarea name="highlight" id="highlight" class="form-control @error('highlight') border-danger @enderror" rows="2">{{ old('highlight') ?? null}}</textarea>
-                    @error('highlight')
-                        <span class="text-danger"><small>{{$message}}</small></span>
-                    @enderror
-                  </div>
-                <div class="form-group">
-                    <textarea name="note" class="form-control" id="editor" rows="7">{{ old('note') ?? null}}</textarea>
-                    @error('note')
-                        <span class="text-danger"><small>{{$message}}</small></span>
-                    @enderror
+    <title>{{ isset($title) ? $title : config('app.name', 'Laravel') }}</title>
+    
+    <link rel="icon" type="image/png" href="{{asset('tamplate/img/logo-Patron.png')}}">
+
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('tamplate/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{asset('tamplate/css/sb-admin-2.min.css')}}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <br><br>
+        <h3 class="text-dark text-center">{{ $content->title }}</h3>
+        <br>
+        <p>{{ $content->opening }}</p>
+        {!! $content->content !!}
+        <br>
+        <p>{{ $content->closing }}</p>
+        <hr>
+        <div class="row">
+            <div class="col">
+                    <img src="{{ asset('tamplate/img/logo-patron-pnga.png') }}" style="height: 80px" alt="Patron logo">
+                    <br>
+                    <div>Copyright <a class="card-link text-danger" href="http://localhost:8000/home">PatronTMS</a> © 2021
+                    </div>
+                    <div class="text-xs">
+                        Develop with <span class="text-danger">❤</span> by 
+                        <a class="card-link text-gray-600" href="https://github.com/yudistirachma">Yudistirachma</a>
+                    </div>
+            </div>
+            <div class="col text-xs">
+                <div class="font-weight-bold text-lg">Content Information</div>
+                <div>Content id : {{ $content->id}}</div>
+                <div class="mt-2">Journalist &nbsp;: {{ $content->user->name }}</div> 
+                <div>Redaktur &nbsp;&nbsp;: {{ $content->group->user->name }}</div> 
+                <div>Created at : {{ $content->created_at->format('d/m/Y')}}</div>
+                <div>Verfied at : {{ $content->verification ? $content->verification->format('d/m/Y') : 'Not verified'}}</div>
+                <div>UploadLink : <a href="{{ $content->upload}}">{{ $content->upload}}</a></div>
+
+                <div class="mt-2">
+                    @if ($content->verification > $content->deadline && $content->deadline !== null)
+                    <span class="badge badge-pill mx-auto badge-danger"><small>Late</small></span>
+                    @endif
+                    @if ($content->upload)
+                    <a href="{{ $content->upload }}" class="badge badge-pill mx-auto badge-info"><small>Uploaded</small></a>
+                    @endif
+                    @if ($content->verification)
+                    <span class="badge badge-pill mx-auto badge-success"><small>Verified</small></span>
+                    @endif
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
-            </form>
+            </div>
+            <div class="col"></div>
         </div>
+        <br>
     </div>
-    <script>
-        tinymce.init({
-            selector: "textarea#editor",
-            skin: "bootstrap",
-            plugins: "lists fullscreen preview table codesample wordcount charmap emoticons",
-            toolbar:
-            "undo redo | bold italic underline strikethrough | fullscreen  preview removeformat | formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist table | forecolor backcolor codesample | charmap emoticons ",
-            menubar: false,
-            toolbar_mode: 'sliding',
-            height: 300,
-            setup: (editor) => {
-                 // Apply the focus effect
-                editor.on("init", () => {
-                    editor.getContainer().style.transition =
-                    "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
-                });
-                editor.on('init change', function () {
-                    editor.save();
-                });
-                editor.on("focus", () => {
-                    (editor.getContainer().style.boxShadow =
-                    "0 0 0 .2rem rgba(0, 123, 255, .25)"),
-                    (editor.getContainer().style.borderColor = "#80bdff");
-                });
-                editor.on("blur", () => {
-                    (editor.getContainer().style.boxShadow = ""),
-                    (editor.getContainer().style.borderColor = "");
-                });
-            },
-        });
-    </script>
-@endsection
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{asset('tamplate/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('tamplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+</body>
+</html>

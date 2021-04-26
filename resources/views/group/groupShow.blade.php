@@ -4,7 +4,7 @@
     <div class="card mb-3 shadow">
         <div class="card-body">        
             <div class="row">
-                <img class="col-lg-3 mb-2" src="{{ asset('tamplate/img/undraw_typewriter_i8xd.svg') }}" style="height:100%;">
+                <img class="col-lg-3 mb-2" src="{{ asset('tamplate/img/undraw_Specs_djh3.svg') }}" style="height: 80%;">
                 <div class="col-lg-9">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title text-capitalize font-weight-bold">{{ $group->segment }}</h4>

@@ -27,6 +27,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CreateNoteEvent' => [
             'App\Listeners\SendNoteNotificationtListener'
         ],
+        'App\Events\CommentEvent' => [
+            'App\Listeners\SendCommentNotificationtListener'
+        ],
+        'App\Events\ValidationEvent' => [
+            'App\Listeners\SendValidationNotificationtListener'
+        ],
     ];
 
     /**

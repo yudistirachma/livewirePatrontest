@@ -11,11 +11,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="{{asset('tamplate/img/logo-Patron.png')}}">
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('tamplate/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('tamplate/css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -30,6 +30,22 @@
         @yield('content')
 
     </div>
+    <footer class="sticky-footer">
+        <div class="container my-auto text-gray-300">
+            <div class="copyright text-center my-auto">
+                <span>Copyright <a class="card-link text-gray-200 font-weight-bold" href="{{ route('home') }}">{{ config('app.name') }}</a> &copy; {{  \Carbon\Carbon::now()->year }}</span>
+
+                <div class="mt-1">Develop with <span class="text-danger">&#10084;</span> by 
+                <a class="card-link text-gray-200 font-weight-bold" href="https://github.com/yudistirachma">Yudistirachma</a>
+                
+                </div>
+            </div>
+            {{-- <div class="copyright text-center my-auto">
+                
+            </div> --}}
+        </div>
+    </footer>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('tamplate/vendor/jquery/jquery.min.js') }}"></script>

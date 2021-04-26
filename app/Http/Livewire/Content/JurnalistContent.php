@@ -32,7 +32,18 @@ class JurnalistContent extends Component
 
     public function render()
     {
-        $users = CollectionHelper::paginate($this->group->users->whereNotIn('id', $this->journalist), 8);
+        $search = $this->search;
+
+        if ($search === '') {
+            $users = CollectionHelper::paginate($this->group->users->whereNotIn('id', $this->journalist), 8);
+        }else {
+            $users = CollectionHelper::paginate($this->group->users->whereNotIn('id', $this->journalist)
+            ->filter(function ($item) use ($search) {
+                if (stristr($item->name, $search) or stristr($item->id, $search)) {
+                   return true;
+                }
+            }), 8);
+        }
 
         return view('livewire.content.jurnalist-content', compact('users'));
     }

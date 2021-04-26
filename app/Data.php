@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data extends Model
 {
-    protected $fillable = [];
+    protected $guarded  = [];
 
     protected $table = 'data';
+
+    public function content()
+    {
+        return $this->belongsTo('App\Content');
+    }
 }

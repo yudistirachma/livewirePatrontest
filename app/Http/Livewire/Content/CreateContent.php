@@ -10,8 +10,7 @@ use Livewire\Component;
 class CreateContent extends Component
 {
     public $group, $data, $journalist;
-
-    public $k = 1;
+    public $redaktur;
     
     protected $listeners = ['newJournalist' => 'addJournalist'];
     
@@ -19,6 +18,12 @@ class CreateContent extends Component
     {
         $this->group = $group;
         $this->data['group_id'] = $group->id ;
+        $this->redaktur = $group->user_id;
+
+        if (auth()->user()->id !== $this->redaktur) {
+            $this->data['user_id'] = auth()->user()->id;
+            $this->data['jurnalis'] = true;
+        }      
     }
 
     public function addJournalist(User $value)
@@ -29,18 +34,28 @@ class CreateContent extends Component
 
     public function createContent()
     {
-        $validateData = $this->validate([
-            'data.title' => ['required', 'unique:contents,title', new MaxWordsRule(11)],
-            'data.user_id' => 'required',
-            'data.desc' => 'required',
-            'data.deadline' => 'required',
-            'data.group_id' => 'required',
-        ]);
-
+        if (auth()->user()->id == $this->redaktur) {
+            $validateData = $this->validate([
+                'data.title' => ['required', 'unique:contents,title', new MaxWordsRule(11)],
+                'data.user_id' => 'required',
+                'data.desc' => 'required',
+                'data.deadline' => 'required|date',
+                'data.group_id' => 'required',
+            ]);
+        }else {
+            $validateData = $this->validate([
+                'data.title' => ['required', 'unique:contents,title', new MaxWordsRule(11)],
+                'data.user_id' => 'required',
+                'data.desc' => 'required',
+                'data.group_id' => 'required',
+            ]);
+        }
+        
         $result = Content::create($validateData['data']);
         
         if ($result) {
-            return redirect(route('myGroup'));
+            session()->flash('status', 'Content successfully created.');
+            return redirect()->to(route('groupShow', $this->data['group_id']));
         }
     }
 

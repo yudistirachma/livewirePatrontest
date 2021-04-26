@@ -18,9 +18,6 @@
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
-            mso-margin-top-alt: 0px;
-            mso-margin-bottom-alt: 0px;
-            mso-padding-alt: 0px 0px 0px 0px;
         }
 
         p,
@@ -142,7 +139,7 @@
     <table style="display:none!important;">
         <tr>
             <td>
-                <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
+                <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;max-height:0px;max-width:0px;opacity:0;">
                     Welcome to Patron media inspiration!
                 </div>
             </td>
@@ -236,11 +233,12 @@
                                     <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                         <!-- section text ======-->
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            <span style="font-weight: bold" >{{ $sender }} ({{ $role }})</span> have added a new note to the group
+                                            <span style="font-weight: bold;">{{ $sender }}</span> have added a new Comment to the content <span style="font-weight: bold;">{{ $titleContent }}</span> at segment <span style="font-weight: bold;">{{ $segment }}</span> group.
                                         </p>
 
                                         <p style="line-height: 24px;margin-bottom:15px;">
-                                            <span style="font-weight: bold;" >( HiGHLIGHT )</span>  {{ $note->highlight }}
+                                            {{ $comment }} <br>
+                                            <span style="font-weight: bold;">{{ $createdComment }}</span>
                                         </p>
                                         
                                         <p style="line-height: 24px; margin-bottom:20px;">
@@ -258,7 +256,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;">
-                                                        <a href="http://localhost:8000/note/{{ $note->id }}" target="_blank" style="color: #ffffff; text-decoration: none;">Check Note</a>
+                                                        <a href="{{ route('contentEdit', $idContent) }}" target="_blank" style="color: #ffffff; text-decoration: none;">Check Note</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -272,17 +270,26 @@
                                             &#10084; Love,</br>
                                             The Patron team
                                         </p>
+
                                     </td>
                                 </tr>
                             </table>
                         </td>
                     </tr>
+
+
+
+
+
                 </table>
+
             </td>
         </tr>
+
         <tr>
             <td height="40" style="font-size: 40px; line-height: 40px;">&nbsp;</td>
         </tr>
+
     </table>
 
     <!-- end section -->
@@ -309,8 +316,7 @@
 
                                 <tr>
                                     <td>
-                                        <table border="0" width="300" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
-                                            class="container590">
+                                        <table border="0" width="300" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" class="container590">
 
                                             <tr>
                                                 <!-- logo -->
@@ -326,7 +332,7 @@
                                             <tr>
                                                 <td align="left" style="color: #888888; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 23px;"
                                                     class="text_color">
-                                                    <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
+                                                    <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600;line-height: 23px;">
 
                                                         Email us: <br/> <a href="mailto:" style="color: #888888; font-size: 14px; font-family: 'Hind Siliguri', Calibri, Sans-serif; font-weight: 400;">PatronTMS@patron.id</a>
 
@@ -336,14 +342,13 @@
 
                                         </table>
 
-                                        <table border="0" width="2" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
-                                            class="container590">
+                                        <table border="0" width="2" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" class="container590">
                                             <tr>
                                                 <td width="2" height="10" style="font-size: 10px; line-height: 10px;"></td>
                                             </tr>
                                         </table>
 
-                                        <table border="0" width="200" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                                        <table border="0" width="200" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"
                                             class="container590">
 
                                             <tr>

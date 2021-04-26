@@ -10,8 +10,7 @@ class ContentGroup extends Component
     use WithPagination;
 
     public $search = '';
-    public $group_id;
-    protected $redaktur ;
+    public $group_id, $redaktur, $jurnalis;
 
     public function updatingSearch()
     {
@@ -22,6 +21,7 @@ class ContentGroup extends Component
     {
         $this->group_id = $data->id;
         $this->redaktur = $data->user_id;
+        $this->jurnalis = $data->users;
     }
 
     public function render()

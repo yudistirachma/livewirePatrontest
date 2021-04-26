@@ -6,7 +6,7 @@
                 <div>
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"wire:submit.prevent="updatingSearch" >
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small bg-white" placeholder="Search name and nik..."
+                            <input type="text" class="form-control bg-light border-0 small bg-white" placeholder="Search name or id..."
                                 aria-label="Search" aria-describedby="basic-addon2" wire:model.defer="search">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -24,17 +24,19 @@
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
+                        <th scope="col">&nbsp;&nbsp;&nbsp;ID</th>
                         <th scope="col">Position</th>
-                        <th scope="col align-middle">Manage</th>
+                        <th scope="col">Manage</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($users as $employ)
                         <tr>
-                            <th scope="row">
+                            <th scope="row" class="">
                                 <img style="height: 40px;width :40px;" src="{{ isset($employ->imgprofile) ? asset('storage/'. $employ->imgprofile) : asset('tamplate/img/undraw_profile.svg') }}" alt="" class="img-profile rounded-circle mr-2">
-                                <span>{{$employ->name}}</span>
+                                <span class="text-capitalize">{{$employ->name}}</span><br>
                             </th>
+                            <td class="align-middle">{{$employ->id}}</td>
                             @if (isset($employ->roles[0]->name))
                                 <td class="align-middle">{{$employ->roles[0]->name == 'pimpinan redaktur' ? 'pimred' : $employ->roles[0]->name }}</td>
                             @else

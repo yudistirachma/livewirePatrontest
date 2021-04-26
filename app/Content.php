@@ -29,4 +29,9 @@ class Content extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function datas()
+    {
+        return $this->hasMany('App\Data');
+    }
 }

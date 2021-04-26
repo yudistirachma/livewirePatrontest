@@ -31,9 +31,10 @@ Route::prefix('group')->middleware('auth')->group(function () {
     Route::get('/show/{group}', 'GroupController@show')->middleware('jurnalis')->name('groupShow');
 });
 
-Route::prefix('content')->middleware('auth')->group(function () {
-    Route::get('/create/{group}', 'ContentController@create')->name('contentCreate');
-    Route::put('/edit/{content}', 'ContentController@edit')->name('contentEdit');
+Route::prefix('content')->middleware('auth', 'jurnalis')->group(function () {
+    Route::get('/create/{group}', 'ContentController@create')->name('contentCreate')->middleware('jurnalist_or_redaktur');
+    Route::get('/edit/{content}', 'ContentController@edit')->name('contentEdit')->middleware('own_or_redaktur');
+    Route::get('/show/{content}', 'ContentController@show')->name('contentShow')->middleware('own_or_redaktur');
 });
 
 Route::prefix('note')->middleware('auth', 'jurnalis')->group(function () {

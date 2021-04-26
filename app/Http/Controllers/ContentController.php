@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
-use Illuminate\Http\Request;
+use App\{Content, Group};
 
 class ContentController extends Controller
 {
@@ -12,13 +11,13 @@ class ContentController extends Controller
         return view('content.create', ['group' => $group]);
     }
 
-    public function post()
+    public function edit(Content $content)
     {
-
+        return view('content.edit', compact('content'));
     }
 
-    public function edit()
+    public function show(Content $content)
     {
-        return view('');
+        return view('content.show', compact('content'));
     }
 }

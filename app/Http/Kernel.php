@@ -69,5 +69,7 @@ class Kernel extends HttpKernel
         'pimred_or_redaktur' => \App\Http\Middleware\PimredOrRedaktur::class,
         'own' => \App\Http\Middleware\Own::class,
         'jurnalis' => \App\Http\Middleware\Jurnalis::class,
+        'own_or_redaktur' => \App\Http\Middleware\OwnOrRedaktur::class,
+        'jurnalist_or_redaktur' => \App\Http\Middleware\JurnalistOrRedaktur::class,
     ];
 }

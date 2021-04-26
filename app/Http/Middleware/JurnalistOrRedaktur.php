@@ -2,10 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Group;
 use Closure;
 
-class Jurnalis
+class JurnalistOrRedaktur
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,8 @@ class Jurnalis
      */
     public function handle($request, Closure $next)
     {
-        $group = $request->route('group') ?? $request->route('note')->group ?? $request->route('content')->group ;
-
-        if (!isset($group->users)) {
-            $group = Group::where('id', $group)->first();
-        }
+        $group = $request->route('group');
+        $message = 'You do not have access at this page';
         
         $redaktur = $group->user_id;
         $user = auth()->user()->id;
@@ -28,13 +24,11 @@ class Jurnalis
             $jurnalis[] = $value->id ;
         }
 
-        $message = 'You do not have access at this page';
-
-        if ( in_array($user, $jurnalis) || auth()->user()->roles[0]->name === "pimpinan redaktur" || $user === $redaktur) 
+        if ( in_array($user, $jurnalis) || $user === $redaktur) 
         {
             return $next($request);
         }
-
+        
         return abort(403, $message);
     }
 }

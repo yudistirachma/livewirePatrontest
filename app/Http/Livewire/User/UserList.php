@@ -60,7 +60,7 @@ class UserList extends Component
            
     public function render()
     {
-        return view('livewire.user.user-list', ['users' =>  User::where('name', 'like', '%'.$this->search.'%')->orWhere('ktp', 'like', '%'.$this->search.'%')->paginate(5)] );
+        return view('livewire.user.user-list', ['users' =>  User::where('name', 'like', '%'.$this->search.'%')->orWhere('id', 'like', '%'.$this->search.'%')->paginate(5)] );
     }
 
     private function generateRandomString($length = 8) {

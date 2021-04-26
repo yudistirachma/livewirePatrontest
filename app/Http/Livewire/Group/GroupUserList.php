@@ -66,7 +66,7 @@ class GroupUserList extends Component
         $user = User::whereNotIn("id", $id)->where(function($query)
         {
             $query->Where('name', 'like', '%'.$this->search.'%')
-            ->orWhere('ktp', 'like', '%'.$this->search.'%');
+            ->orWhere('id', 'like', '%'.$this->search.'%');
         });
 
         return view('livewire.group.group-user-list', ['users' =>  $user->paginate(5)]);
