@@ -14,10 +14,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink" style="">
                                 <div class="dropdown-header">Group menu :</div>
-                                <a class="dropdown-item" href="#">Detail</a>
+                                {{-- <a class="dropdown-item" href="#">Detail</a> --}}
                                 @if (auth()->user()->id == $group->user_id  or auth()->user()->roles[0]->name == 'pimpinan redaktur')
                                     @if (auth()->user()->roles[0]->name == 'pimpinan redaktur')
-                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <a class="dropdown-item" href="{{ route('groupEdit', $group->id) }}">Edit</a>
                                     @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('noteCreate', $group->id) }}">Add note</a>

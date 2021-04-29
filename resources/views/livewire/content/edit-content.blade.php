@@ -90,14 +90,15 @@
                             </div>
                             <div class="form-group col">
                                 <label for="">Info</label><br>
-                                @if ($content->verification)
-                                <span class="badge badge-pill badge-success">Validated</span>
-                                @endif
+                                <span class="badge badge-pill mx-auto badge-secondary"><small>{{$content->created_at->format('d-m-y')}}</small></span>
                                 @if ($content->upload)
-                                <span class="badge badge-pill badge-info">Uploaded</span>
+                                <span class="badge badge-pill badge-info"><small>Uploaded</small></span>
+                                @endif
+                                @if ($content->verification)
+                                <span class="badge badge-pill badge-success"><small>Validated</small></span>
                                 @endif
                                 @if ($content->verification > $content->deadline && $content->deadline !== null)
-                                <span class="badge badge-pill badge-danger">Late</span>
+                                <span class="badge badge-pill badge-danger"><small>Late</small></span>
                                 @endif
                             </div>
                         </div>

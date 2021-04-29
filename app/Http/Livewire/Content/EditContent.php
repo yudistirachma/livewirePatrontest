@@ -4,9 +4,8 @@ namespace App\Http\Livewire\Content;
 
 use App\{Comment, Content,Data};
 use App\Events\CommentEvent;
-use App\Helpers\General\CollectionHelper;
+use App\Events\ValidationEvent;
 use App\Rules\MaxWordsRule;
-use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Storage;
 use Livewire\{Component, WithFileUploads, WithPagination};
 
@@ -89,23 +88,45 @@ class EditContent extends Component
             session()->flash('status', 'Content failed updated.');
             return redirect()->to(route('groupShow', $this->data['group_id']));
         }
-        $validateData = $this->validate([
+        
+        $this->validate([
             'data.upload' => 'max:255',
             'data.verification' => '',
             'data.deadline' => '',
         ]);
 
-        if ($validateData['data']['verification'] == true) {
-            $validateData['data']['verification'] = date('d-m-Y', strtotime(now()));
-        }else {
-            $validateData['data']['verification'] = null;
-        }
+        if ($this->data['verification'] == true) {
 
-        $this->content->update($validateData['data']); 
-        if ($this->content->verification == null) {
-            $this->data['verification'] = $this->content->verification;
+            if ($this->content->verification == true) {
+
+                $this->content->update([
+                    "deadline" => $this->data['deadline'],
+                    "upload" => $this->data['upload'],
+                ]);
+
+            } else {
+                $this->data['verification'] = date('d-m-Y', strtotime(now()));
+
+                $this->content->update([
+                    "deadline" => $this->data['deadline'],
+                    "upload" => $this->data['upload'],
+                    "verification" => $this->data['verification'],
+                ]);
+
+                event(new ValidationEvent($this->content));
+
+                $this->data['verification'] = $this->content->verification->format('l, d F Y'); 
+            }
         }else {
-            $this->data['verification'] = $this->content->verification->format('l, d F Y');    
+            $this->data['verification'] = null;
+
+            $this->content->update([
+                "deadline" => $this->data['deadline'],
+                "upload" => $this->data['upload'],
+                "verification" => $this->data['verification'],
+            ]);
+
+            $this->data['verification'] = $this->content->verification;
         }
     }
 

@@ -14,24 +14,18 @@ class GroupUserList extends Component
 
     public $search = '', $data = [];
 
+    public function mount($users = []){
+        $this->data = $users;
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
     }
+    
 
     public function addData($value)
     {
-        if ($this->data == '') {
-            $this->data[] = $value;
-            $this->emit('newUser', $value);
-            return ;
-            
-        }
-        for ($i=0; $i < count($this->data); $i++) {
-            if ($this->data[$i]['id'] == $value['id']) {
-                return;
-            }
-        }
         $this->emit('newUser', $value);
         return $this->data[] = $value;        
     }

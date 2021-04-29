@@ -13,24 +13,10 @@ use Illuminate\Queue\SerializesModels;
 class ValidationEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    public $content;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct($content)
     {
-        //
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
+        $this->content = $content;
     }
 }

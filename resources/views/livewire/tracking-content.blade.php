@@ -1,5 +1,5 @@
-<div class="col-lg-8 mb-4">
-    <div class=" mb-3 d-flex justify-content-between">
+<div class="col-lg mb-4">
+    <div class=" mb-3 d-flex justify-content-center">
         <form class=" navbar-search " wire:submit.prevent="updatingSearch" style="width: 50%;">
             <div class="input-group input-group-sm">
                 <input type="text" class="form-control border-0 small bg-white" placeholder="search by title..." aria-label="Search" aria-describedby="basic-addon2" wire:model.defer="search">
@@ -10,14 +10,6 @@
                 </div>
             </div>
         </form>
-        @if (auth()->user()->id == $redaktur or $jurnalis->contains('id', auth()->user()->id))
-        <a href="{{ route('contentCreate', $group_id) }}" class="btn btn-sm btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-                <i class="fas fa-folder-plus"></i>
-            </span>
-            <span class="text"><small class="font-weight-bold">Content</small></span>
-        </a>
-        @endif
     </div>
     @if (session()->has('status'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -33,11 +25,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h6 class="font-weight-bold">
-                        @if (auth()->user()->id == $redaktur or auth()->user()->roles[0]->name == 'pimpinan redaktur' or auth()->user()->id == $content->user_id)
                         <a class="text-gray-700" href="{{ route('contentEdit', $content->id) }}">{{ Str::limit($content->title, 150) }}</a>
-                        @else
-                        {{ Str::limit($content->title, 150) }}
-                        @endif
                     </h6>
                     <div class="d-flex align-items-center">
                         <img class="img-profile rounded-circle" src="http://localhost:8000/tamplate/img/undraw_profile.svg" style="height: 30px">&nbsp;

@@ -5,10 +5,7 @@ use Illuminate\Support\Facades\Route;
 // route auth
 Auth::routes();
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('auth');
-
+Route::get('/', 'HomeController@index')->middleware('auth')->name('home');
 
 // user handle 
 Route::prefix('user')->middleware(['auth','role:pimpinan redaktur'])->group(function()
@@ -20,8 +17,11 @@ Route::prefix('user')->middleware(['auth','role:pimpinan redaktur'])->group(func
 
 Route::prefix('group')->middleware('auth')->group(function () {
     // pimred
-    Route::get('/', 'GroupController@index')->name('listGroup')->middleware('role:pimpinan redaktur');
-    Route::get('/create', 'GroupController@create')->name('groupCreate');
+    Route::middleware('role:pimpinan redaktur')->group(function (){
+        Route::get('/', 'GroupController@index')->name('listGroup');
+        Route::get('/create', 'GroupController@create')->name('groupCreate');
+        Route::get('/edit/{group}', 'GroupController@edit')->name('groupEdit');
+    });
 
     // redaktur
     Route::get('/redaktur', 'GroupController@redaktur')->middleware('role:redaktur')->name('redakturGroup');
@@ -29,6 +29,7 @@ Route::prefix('group')->middleware('auth')->group(function () {
     // all
     Route::get('/my', 'GroupController@my')->name('myGroup');
     Route::get('/show/{group}', 'GroupController@show')->middleware('jurnalis')->name('groupShow');
+    Route::get('/detail/{group}', 'GroupController@detail')->middleware('jurnalis')->name('groupDetail');
 });
 
 Route::prefix('content')->middleware('auth', 'jurnalis')->group(function () {
@@ -53,5 +54,5 @@ Route::prefix('note')->middleware('auth', 'jurnalis')->group(function () {
 });
 
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->middleware('auth');
 
