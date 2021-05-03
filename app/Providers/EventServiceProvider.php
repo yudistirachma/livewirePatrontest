@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ValidationEvent' => [
             'App\Listeners\SendValidationNotificationtListener'
         ],
+        'App\Events\DeleteContent' => [
+            'App\Listeners\RequestDeleteContent'
+        ],
     ];
 
     /**

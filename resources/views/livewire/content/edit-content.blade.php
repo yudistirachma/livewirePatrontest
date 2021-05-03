@@ -13,8 +13,10 @@
                         <div class="dropdown-header">Content action:</div>
                         <a class="dropdown-item" href="{{route('contentShow', $content->id)}}">Show content</a>
                         <a class="dropdown-item" style="cursor: pointer;" onclick="printExternal('{{route('contentShow', $content->id)}}')">Print content</a>
+                        @if (auth()->user()->roles[0]->name == 'pimpinan redaktur' || auth()->user()->id == $redaktur)
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Delete content</a>
+                        <a class="dropdown-item text-danger" href="" wire:click.prevent="deleteContent({{$content->id}})">Delete content</a>
+                        @endif
                     </div>
                 </div>
             </div>

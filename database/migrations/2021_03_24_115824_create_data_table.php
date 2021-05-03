@@ -15,7 +15,7 @@ class CreateDataTable extends Migration
     {
         Schema::create('data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('content_id')->constrained('contents');
+            $table->foreignId('content_id')->constrained('contents')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
             $table->string('type');
             $table->string('path');

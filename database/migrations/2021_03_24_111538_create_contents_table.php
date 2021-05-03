@@ -15,8 +15,8 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->foreignId('group_id')->nullable()->constrained('groups');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('cascade')->onUpdate('cascade');
             $table->text('desc')->nullable();
             $table->string('title')->nullable();
             $table->string('opening')->nullable();

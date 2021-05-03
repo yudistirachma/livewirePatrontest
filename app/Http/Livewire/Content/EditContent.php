@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Content;
 
-use App\{Comment, Content,Data};
+use App\{Comment, Content, Data};
 use App\Events\CommentEvent;
+use App\Events\DeleteContent;
 use App\Events\ValidationEvent;
 use App\Rules\MaxWordsRule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\{Component, WithFileUploads, WithPagination};
 
@@ -197,6 +199,39 @@ class EditContent extends Component
             event(new CommentEvent($this->content, $result));
             session()->flash('data', "Comment successfully added.");
             $this->myComment = '';
+        }
+    }
+
+    public function deleteContent()
+    {
+        if (auth()->user()->roles[0]->name == 'pimpinan redaktur') {
+
+            if(Storage::deleteDirectory("data/content/{$this->content->id}")) {
+
+                if (Comment::where('content_id', $this->content->id)->delete() && $this->content->delete()) {
+
+                    session()->flash('status', 'Content successfully delete ');
+
+                    return redirect()->to(route('groupShow', $this->data['group_id']));
+                } else {
+
+                    session()->flash('status', 'Content failed to delete ! ');
+
+                    return redirect()->to(route('groupShow', $this->data['group_id']));
+                }
+                
+            }else {
+                session()->flash('status', 'Content failed to delete ! ');
+
+                return redirect()->to(route('groupShow', $this->data['group_id']));
+            }
+
+        }else {
+            event(new DeleteContent($this->content, $this->redaktur));
+
+            session()->flash('status', 'Requesting content delete to Pimred');
+
+            return redirect()->to(route('groupShow', $this->data['group_id']));
         }
     }
 
