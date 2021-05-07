@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Content;
 
 use App\Content;
+use App\Events\CreateContentEvent;
 use App\Rules\MaxWordsRule;
 use App\User;
 use Livewire\Component;
@@ -54,6 +55,11 @@ class CreateContent extends Component
         $result = Content::create($validateData['data']);
         
         if ($result) {
+            
+            if (auth()->user()->id == $this->redaktur && auth()->user()->id !== $validateData['data']['user_id']) {
+                event(new CreateContentEvent($validateData['data']));
+            }
+            
             session()->flash('status', 'Content successfully created.');
             return redirect()->to(route('groupShow', $this->data['group_id']));
         }

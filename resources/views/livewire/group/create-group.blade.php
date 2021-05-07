@@ -44,19 +44,6 @@
                 <span class="text-danger"><small>{{$message}}</small></span>
                 @enderror
             </div>
-            
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input @error('data.status') border-danger @enderror" type="checkbox" id="status" name="status" wire:model.defer="data.status">
-                    <label class="form-check-label" for="status">
-                        Status active
-                    </label>
-                </div>
-                @error('status')
-                <span class="text-danger"><small>{{$message}}</small></span>
-                @enderror
-            </div>
-
             <button type="submit" class="btn btn-primary btn-sm">Submit</button>
         </form>
     </div>
@@ -94,7 +81,6 @@
                                     <span>{{$employ->name}}</span>
                                 </div>
                                 <div>
-                                    <button class="btn btn-circle btn-sm btn-info" ><i class="fas fa-info"></i></button>
                                     <button class="btn btn-circle btn-sm btn-primary" data-dismiss="modal"><i class="fas fa-user-plus" wire:click="addRedaktur({'id':'{{$employ->id}}','name':'{{$employ->name}}','imgprofile':'{{$employ->imgprofile}}','email':'{{$employ->email}}'})"></i></button>
                                 </div>
                             </div>

@@ -45,19 +45,6 @@
                 <span class="text-danger"><small>{{$message}}</small></span>
                 @enderror
             </div>
-            
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input @error('data.status') border-danger @enderror" type="checkbox" id="status" name="status" wire:model.defer="data.status">
-                    <label class="form-check-label" for="status">
-                        Status active
-                    </label>
-                </div>
-                @error('status')
-                <span class="text-danger"><small>{{$message}}</small></span>
-                @enderror
-            </div>
-
             <button type="submit" class="btn btn-primary btn-sm">Save</button>
         </form>
     </div>

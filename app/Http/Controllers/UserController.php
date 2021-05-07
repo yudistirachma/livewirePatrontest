@@ -22,9 +22,13 @@ class UserController extends Controller
     public function update(User $user)
     {
         $attr = request()->validate([
-            "role" => "required|exists:roles,name"
+            "role" => "required|exists:roles,name",
         ]);
 
+        isset(request()->status) ? $user->status = true : $user->status = false;
+
+        $user->save();        
+        
         if ($user->getRoleNames()->contains($attr)) 
         {
             

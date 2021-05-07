@@ -28,7 +28,7 @@
                         <a class="text-gray-700" href="{{ route('contentEdit', $content->id) }}">{{ Str::limit($content->title, 150) }}</a>
                     </h6>
                     <div class="d-flex align-items-center">
-                        <img class="img-profile rounded-circle" src="http://localhost:8000/tamplate/img/undraw_profile.svg" style="height: 30px">&nbsp;
+                        <img class="img-profile rounded-circle" src="{{ isset($content->user->imgprofile) ? asset('storage/'. $content->user->imgprofile) : asset('tamplate/img/undraw_profile.svg') }}" style="height: 30px;width: 30px;">&nbsp;
                         <small class="mx-1 font-weight-bold text-capitalize">{{ Str::limit($content->user->name, 15) }}</small>&middot;<small class="mx-1">{{ $content->deadline ? 'Deadline '. $content->deadline->format('d, M Y') : '' }}</small>
                     </div>
                 </div>

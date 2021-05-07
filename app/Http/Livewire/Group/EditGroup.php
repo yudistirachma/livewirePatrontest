@@ -20,7 +20,6 @@ class EditGroup extends Component
         $this->data['id'] = $group->id;
         $this->data['segment'] = $group->segment;
         $this->data['description'] = $group->desc;
-        $this->data['status'] = $group->status;
         $this->redakturAdd = $group->user->toArray();
         $this->users = $group->users->toArray();
         $this->userOld = $group->users->toArray();
@@ -64,7 +63,6 @@ class EditGroup extends Component
             'data.segment' => "required|max:50|unique:groups,segment,{$this->data['id']}",
             'data.description' => 'required|max:400',
             'redakturAdd' => 'required',
-            'data.status' => 'required',
             'users' => 'required'
         ]);
 
@@ -72,7 +70,6 @@ class EditGroup extends Component
             'segment' => $this->data['segment'],
             'desc' => $this->data['description'],
             'user_id' => $this->redakturAdd['id'],
-            'status' => $this->data['status'],
         ]);
 
         foreach($this->users as $data)

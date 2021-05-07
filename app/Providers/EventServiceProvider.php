@@ -36,6 +36,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\DeleteContent' => [
             'App\Listeners\RequestDeleteContent'
         ],
+        'App\Events\CreateContentEvent' => [
+            'App\Listeners\CreateContentNotificationListener'
+        ],
     ];
 
     /**

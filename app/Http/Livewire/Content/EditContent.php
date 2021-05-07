@@ -3,11 +3,8 @@
 namespace App\Http\Livewire\Content;
 
 use App\{Comment, Content, Data};
-use App\Events\CommentEvent;
-use App\Events\DeleteContent;
-use App\Events\ValidationEvent;
+use App\Events\{CommentEvent, DeleteContent, ValidationEvent};
 use App\Rules\MaxWordsRule;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\{Component, WithFileUploads, WithPagination};
 

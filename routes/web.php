@@ -5,17 +5,17 @@ use Illuminate\Support\Facades\Route;
 // route auth
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/', 'HomeController@index')->middleware('auth', 'user_status')->name('home');
 
 // user handle 
-Route::prefix('user')->middleware(['auth','role:pimpinan redaktur'])->group(function()
+Route::prefix('user')->middleware(['auth', 'user_status','role:pimpinan redaktur'])->group(function()
 {
     Route::get('/', 'UserController@indexCreate')->name('employesList');
     Route::get('/{user}', 'UserController@index')->name('employeManage');
     Route::put('/{user}', 'UserController@update')->name('employeUpdate');
 });
 
-Route::prefix('group')->middleware('auth')->group(function () {
+Route::prefix('group')->middleware('auth', 'user_status')->group(function () {
     // pimred
     Route::middleware('role:pimpinan redaktur')->group(function (){
         Route::get('/', 'GroupController@index')->name('listGroup');
@@ -32,13 +32,13 @@ Route::prefix('group')->middleware('auth')->group(function () {
     Route::get('/detail/{group}', 'GroupController@detail')->middleware('jurnalis')->name('groupDetail');
 });
 
-Route::prefix('content')->middleware('auth', 'jurnalis')->group(function () {
+Route::prefix('content')->middleware('auth', 'user_status', 'jurnalis')->group(function () {
     Route::get('/create/{group}', 'ContentController@create')->name('contentCreate')->middleware('jurnalist_or_redaktur');
     Route::get('/edit/{content}', 'ContentController@edit')->name('contentEdit')->middleware('own_or_redaktur');
     Route::get('/show/{content}', 'ContentController@show')->name('contentShow')->middleware('own_or_redaktur');
 });
 
-Route::prefix('note')->middleware('auth', 'jurnalis')->group(function () {
+Route::prefix('note')->middleware('auth', 'user_status', 'jurnalis')->group(function () {
     Route::get('/{note}', 'NoteController@show')->name('noteDetail');
 
     Route::middleware('pimred_or_redaktur')->group(function (){
@@ -54,5 +54,5 @@ Route::prefix('note')->middleware('auth', 'jurnalis')->group(function () {
 });
 
 
-Route::get('/home', 'HomeController@index')->middleware('auth');
+Route::get('/home', 'HomeController@index')->middleware('auth', 'user_status');
 

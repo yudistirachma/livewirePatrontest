@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('imgnpwp', '191')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();
         });

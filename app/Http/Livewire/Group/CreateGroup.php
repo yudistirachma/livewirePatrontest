@@ -20,7 +20,6 @@ class CreateGroup extends Component
         'data.segment' => 'required|max:50|unique:groups,segment',
         'data.description' => 'required|max:400',
         'redakturAdd' => 'required',
-        'data.status' => 'required',
         'users' => 'required'
     ];
 
@@ -63,7 +62,6 @@ class CreateGroup extends Component
             'segment' => $this->data['segment'],
             'desc' => $this->data['description'],
             'user_id' => $this->redakturAdd['id'],
-            'status' => $this->data['status'],
         ]);
 
         $input = [];

@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'phoneNum' => '1234567890123',
                 'ktp' => '1234567890123456',
-                'npwp' => '1234567890123456'
+                'npwp' => '1234567890123456',
+                'status' => true
             ],
             [
                 'id' => '10002',
@@ -30,7 +31,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'phoneNum' => '1234567890123',
                 'ktp' => '1234567890123456',
-                'npwp' => '1234567890123456'
+                'npwp' => '1234567890123456',
+                'status' => true
+
             ],
             [
                 'id' => '10003',
@@ -39,7 +42,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'phoneNum' => '1234567890121',
                 'ktp' => '1234567890123456',
-                'npwp' => '1234567890123456'
+                'npwp' => '1234567890123456',
+                'status' => true
             ],
             [
                 'id' => '10004',
@@ -48,7 +52,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'phoneNum' => '1234567890121',
                 'ktp' => '1234567890123451',
-                'npwp' => '1234567890123451'
+                'npwp' => '1234567890123451',
+                'status' => true
+
             ],
             [
                 'id' => '10005',
@@ -57,7 +63,8 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'phoneNum' => '1234567890126',
                 'ktp' => '1234567890123456',
-                'npwp' => '1234567890123456'
+                'npwp' => '1234567890123456',
+                'status' => false
             ],
         ]);
     }

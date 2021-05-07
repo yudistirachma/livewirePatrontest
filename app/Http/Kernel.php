@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'jurnalis' => \App\Http\Middleware\Jurnalis::class,
         'own_or_redaktur' => \App\Http\Middleware\OwnOrRedaktur::class,
         'jurnalist_or_redaktur' => \App\Http\Middleware\JurnalistOrRedaktur::class,
+        'user_status' => \App\Http\Middleware\UserStatus::class,
     ];
 }

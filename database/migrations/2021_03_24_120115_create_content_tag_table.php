@@ -11,23 +11,23 @@ class CreateContentTagTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('content_tag', function (Blueprint $table) {
-            $table->primary(['content_id', 'tag_id']);
-            $table->unsignedBigInteger('content_id');
-            $table->unsignedBigInteger('tag_id');
-            $table->timestamps();
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('content_tag', function (Blueprint $table) {
+    //         $table->primary(['content_id', 'tag_id']);
+    //         $table->unsignedBigInteger('content_id');
+    //         $table->unsignedBigInteger('tag_id');
+    //         $table->timestamps();
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('content_tag');
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  *
+    //  * @return void
+    //  */
+    // public function down()
+    // {
+    //     Schema::dropIfExists('content_tag');
+    // }
 }

@@ -357,7 +357,7 @@ tinymce.init({
     toolbar_mode: 'sliding',
     height: 300,
     readonly : {{$edit}},
-    forced_root_block: false,
+    forced_root_block: true,
     setup: (editor) => {
     // Apply the focus effect
         editor.on("init", () => {
@@ -391,7 +391,7 @@ tinymce.init({
     toolbar_mode: 'sliding',
     height: 300,
     readonly : {{$edit}},
-    forced_root_block: false,
+    forced_root_block: true,
     setup: (editor) => {
     // Apply the focus effect
         editor.on("init", () => {

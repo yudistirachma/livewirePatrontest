@@ -18,7 +18,7 @@ class CreateGroupsTable extends Migration
             $table->string('segment');
             $table->text('desc');
             $table->foreignId('user_id')->constrained('users');
-            $table->boolean('status');
+            // $table->boolean('status');
             $table->timestamps();
         });
     }
