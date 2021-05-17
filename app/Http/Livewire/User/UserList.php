@@ -42,6 +42,7 @@ class UserList extends Component
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
+            'status' => true,
             'password' => Hash::make($password)
         ]);
 

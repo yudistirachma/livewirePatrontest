@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Group Manage', 'livewire' => true, 'tinymce' => true])
+@extends('layouts.app', ['title' => 'Content', 'livewire' => true, 'tinymce' => true])
 
 @section('content')
         @livewire('content.edit-content', ['content' => $content])

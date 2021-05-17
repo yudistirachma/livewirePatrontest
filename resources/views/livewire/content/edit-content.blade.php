@@ -306,7 +306,7 @@
                 <li class="list-group-item">
                     <form class="mt-1" wire:submit.prevent="addComment">
                     <div class="form-group">
-                        <textarea class="form-control @error('myComment') text-danger @enderror" wire:model.defer="myComment" rows="3"></textarea>
+                        <textarea class="form-control @error('myComment') border-danger @enderror" wire:model.defer="myComment" rows="3"></textarea>
                         @error('myComment')
                             <span class="text-danger"><small>{{$message}}</small></span>
                         @enderror

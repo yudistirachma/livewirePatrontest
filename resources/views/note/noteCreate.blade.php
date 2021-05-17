@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Group Manage', 'livewire' => true, 'tinymce' => true])
+@extends('layouts.app', ['title' => 'Add Note', 'livewire' => true, 'tinymce' => true])
 
 @section('content')
     <div class="card shadow mb-4">

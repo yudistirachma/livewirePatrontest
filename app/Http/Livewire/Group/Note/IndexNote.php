@@ -22,7 +22,7 @@ class IndexNote extends Component
         $groupName = Group::where('id', '=', $this->group_id)->first()->segment;
 
         return view('livewire.group.note.index-note', compact('notes', 'groupName'))
-            ->extends('layouts.app', ['livewire' => true, 'title' => 'Note']);
+            ->extends('layouts.app', ['livewire' => true, 'title' => 'All Note']);
     }
 
     public function paginationView()

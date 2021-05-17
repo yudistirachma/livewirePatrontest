@@ -101,8 +101,10 @@ class EditGroup extends Component
         $delete = DB::table('group_user')->where('user_id', )->where('group_id', )->delete();
 
         $hasil = DB::table('group_user')->insertOrIgnore($input);
-        
-        return Redirect::route('listGroup');
+
+        session()->flash('status', 'Group successfully updated.');
+
+        return Redirect::route('groupShow', $this->data['id']);
     }
 
     public function render()
