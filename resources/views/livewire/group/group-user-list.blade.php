@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                 @forelse ($users as $employ)
-                    <tr wire:click="addData({{$employ}})">
+                    <tr wire:click="addData({{$employ}})" style="cursor: pointer;">
                         <td scope="row" class="d-flex align-items-center">
                             <img style="height: 40px;width :40px;" src="{{ isset($employ->imgprofile) ? asset('storage/'. $employ->imgprofile) : asset('tamplate/img/undraw_profile.svg') }}" alt="" class="img-profile rounded-circle mr-2">
                             <div>
