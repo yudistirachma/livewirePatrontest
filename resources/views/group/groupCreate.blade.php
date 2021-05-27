@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Group Manage', 'livewire' => true])
+@extends('layouts.app', ['title' => 'Create Group', 'livewire' => true])
 
 @section('content')
     <div class="row">

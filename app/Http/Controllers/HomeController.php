@@ -24,6 +24,9 @@ class HomeController extends Controller
             $validated = Content::where('verification', '!=', null)
                 ->whereBetween('created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
                 ->count();
+
+            $allContent = Content::whereBetween('created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
+            ->count();
     
             $content = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(created_at) as month"))
                 ->whereBetween('created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
@@ -35,7 +38,11 @@ class HomeController extends Controller
             $late = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(contents.created_at) as month"))
                 ->join('groups', function ($join) {
                     $join->on('contents.group_id', '=', 'groups.id')
-                        ->Where('groups.user_id', '=', auth()->user()->id );
+                        ->where(function($query)
+                        {
+                            $query->Where('groups.user_id', '=', auth()->user()->id)
+                            ->orWhere('contents.user_id', '=', auth()->user()->id );
+                        });
                 })
                 ->whereColumn('verification', '>', 'deadline')
                 ->whereBetween('contents.created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
@@ -45,7 +52,11 @@ class HomeController extends Controller
             $notValidated = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(contents.created_at) as month"))
                 ->join('groups', function ($join) {
                     $join->on('contents.group_id', '=', 'groups.id')
-                        ->Where('groups.user_id', '=', auth()->user()->id );
+                        ->where(function($query)
+                        {
+                            $query->Where('groups.user_id', '=', auth()->user()->id)
+                            ->orWhere('contents.user_id', '=', auth()->user()->id );
+                        });
                 })
                 ->where('verification', null)
                 ->whereBetween('contents.created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
@@ -55,17 +66,37 @@ class HomeController extends Controller
             $validated = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(contents.created_at) as month"))
                 ->join('groups', function ($join) {
                     $join->on('contents.group_id', '=', 'groups.id')
-                        ->Where('groups.user_id', '=', auth()->user()->id );
+                        ->where(function($query)
+                        {
+                            $query->Where('groups.user_id', '=', auth()->user()->id)
+                            ->orWhere('contents.user_id', '=', auth()->user()->id );
+                        });
                 })
                 ->where('verification', '!=', null)
                 ->whereBetween('contents.created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
                 ->count();
             // dd($validated);
+
+            $allContent = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(contents.created_at) as month"))
+                ->join('groups', function ($join) {
+                    $join->on('contents.group_id', '=', 'groups.id')
+                    ->where(function($query)
+                    {
+                        $query->Where('groups.user_id', '=', auth()->user()->id)
+                        ->orWhere('contents.user_id', '=', auth()->user()->id );
+                    });
+                })
+                ->whereBetween('contents.created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
+                ->count();
     
             $content = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(contents.created_at) as month"))
                 ->join('groups', function ($join) {
                     $join->on('contents.group_id', '=', 'groups.id')
-                        ->Where('groups.user_id', '=', auth()->user()->id );
+                    ->where(function($query)
+                    {
+                        $query->Where('groups.user_id', '=', auth()->user()->id)
+                        ->orWhere('contents.user_id', '=', auth()->user()->id );
+                    });
                 })
                 ->whereBetween('contents.created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
                 ->orderBy('contents.created_at')
@@ -90,6 +121,10 @@ class HomeController extends Controller
                 ->whereBetween('created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
                 ->count();
             // dd($validated);
+
+            $allContent = Content::where('user_id', '=', auth()->user()->id)
+            ->whereBetween('created_at', [new Carbon("first day of January {$year}"), new Carbon("last day of December {$year}")])
+            ->count();
     
             $content = DB::table('contents')->select(DB::raw("(COUNT(*)) as count, MONTH(created_at) as month"))
                 ->where('user_id', '=', auth()->user()->id)
@@ -109,7 +144,7 @@ class HomeController extends Controller
 
         // dd($content);
         
-        return view('home', compact('year','late','notValidated','validated','content', 'totalContent'));
+        return view('home', compact('year','late','notValidated','validated','content', 'totalContent', 'allContent'));
     }
 
     protected function toArray($arr)

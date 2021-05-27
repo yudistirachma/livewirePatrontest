@@ -35,5 +35,9 @@ class GroupController extends Controller
     {
         return view('group.groupShow', ['group' => $group]);
     }
-
+    
+    public function detail(Group $group)
+    {
+        return view('group.groupDetail', ['group' => $group]);
+    }
 }

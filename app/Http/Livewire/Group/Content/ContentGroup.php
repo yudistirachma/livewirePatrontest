@@ -28,8 +28,16 @@ class ContentGroup extends Component
     {
         $user_id = auth()->user()->id;
 
-        $contents = Content::where('group_id', $this->group_id)->where('title', 'like', '%'.$this->search.'%')->orderByRaw("CASE WHEN user_id = {$user_id} THEN 0 ELSE 1 END ,verification ASC , deadline ASC, upload ASC")
-        ->paginate(5);
+        if (auth()->user()->roles[0]->name == 'jurnalis') {
+            $contents = Content::where('group_id', $this->group_id)
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('title', 'like', '%'.$this->search.'%')
+            ->orderByRaw("verification ASC , deadline ASC, upload ASC")
+            ->paginate(5);
+        } else {
+            $contents = Content::where('group_id', $this->group_id)->where('title', 'like', '%'.$this->search.'%')->orderByRaw("CASE WHEN user_id = {$user_id} THEN 0 ELSE 1 END ,verification ASC , deadline ASC, upload ASC")
+            ->paginate(5);
+        }        
 
         return view('livewire.group.content.content-group', compact('contents'));
     }

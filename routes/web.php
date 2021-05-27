@@ -32,6 +32,13 @@ Route::prefix('group')->middleware('auth', 'user_status')->group(function () {
     Route::get('/detail/{group}', 'GroupController@detail')->middleware('jurnalis')->name('groupDetail');
 });
 
+Route::prefix('content')->middleware('auth', 'user_status')->group(function() {
+    Route::get('/on-going', 'ContentController@onGoing')->name('contentOnGoing');
+    Route::get('/late', 'ContentController@late')->name('contentLate');
+    Route::get('/validated', 'ContentController@validated')->name('contentValidated');
+    Route::get('/all', 'ContentController@all')->name('contentAll');
+});
+
 Route::prefix('content')->middleware('auth', 'user_status', 'jurnalis')->group(function () {
     Route::get('/create/{group}', 'ContentController@create')->name('contentCreate')->middleware('jurnalist_or_redaktur');
     Route::get('/edit/{content}', 'ContentController@edit')->name('contentEdit')->middleware('own_or_redaktur');

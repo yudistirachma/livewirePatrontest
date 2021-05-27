@@ -117,7 +117,7 @@
 
             <li class="nav-item " style="color:white">
                 <a class="nav-link" href="{{ route('myGroup') }}" style="color:white">
-                    <i class="fas fa-tasks" style="color:white"></i>
+                    <i class="fas fa-object-group" style="color:white"></i>
                     <span>My Group</span></a>
             </li>
 

@@ -20,4 +20,24 @@ class ContentController extends Controller
     {
         return view('content.show', compact('content'));
     }
+
+    public function onGoing()
+    {
+        return view('content.onGoing');
+    }
+
+    public function late()
+    {
+        return view('content.late');
+    }
+
+    public function validated()
+    {
+        return view('content.validated');
+    }
+
+    public function all()
+    {
+        return view('content.all');
+    }
 }
