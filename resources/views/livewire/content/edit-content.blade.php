@@ -29,7 +29,6 @@
                             <span class="text-danger"><small>{{$message}}</small></span>
                         @enderror
                     </div>
-                    @if (auth()->user()->id == $redaktur or auth()->user()->roles[0]->name == 'pimpinan redaktur') 
                     <div class="form-group" wire:ignore>
                         <label for="desc" class="@error('data.desc') text-danger @enderror">Description</label>
                         <textarea name="desc" {{ $edit ? 'disabled' : '' }} class="form-control @error('data.desc') border-danger @enderror" id="desc" wire:model.defer='data.desc' rows="7"></textarea>
@@ -37,7 +36,6 @@
                     @error('data.desc')
                         <span class="text-danger "><small>{{$message}}</small></span><br>
                     @enderror
-                    @endif
                     <div class="form-group">
                         <label for="opening" class="@error('data.opening') text-danger @enderror">Opening</label>
                         <textarea name="opening" id="opening" {{ $edit ? 'disabled' : '' }} class="form-control @error('data.opening') border-danger @enderror" wire:model.defer='data.opening' rows="3"></textarea>
