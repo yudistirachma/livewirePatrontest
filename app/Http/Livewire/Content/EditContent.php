@@ -203,25 +203,16 @@ class EditContent extends Component
     {
         if (auth()->user()->roles[0]->name == 'pimpinan redaktur') {
 
-            if(Storage::deleteDirectory("data/content/{$this->content->id}")) {
+            Storage::deleteDirectory("data/content/{$this->content->id}");
 
-                if (Comment::where('content_id', $this->content->id)->delete() && $this->content->delete()) {
+            Comment::where('content_id', $this->content->id)->delete();
+            
+            $this->content->delete();
 
-                    session()->flash('status', 'Content successfully delete ');
+            session()->flash('status', 'Content successfully delete ');
 
-                    return redirect()->to(route('groupShow', $this->data['group_id']));
-                } else {
+            return redirect()->to(route('groupShow', $this->data['group_id']));
 
-                    session()->flash('status', 'Content failed to delete ! ');
-
-                    return redirect()->to(route('groupShow', $this->data['group_id']));
-                }
-                
-            }else {
-                session()->flash('status', 'Content failed to delete ! ');
-
-                return redirect()->to(route('groupShow', $this->data['group_id']));
-            }
 
         }else {
             event(new DeleteContent($this->content, $this->redaktur));
