@@ -18,7 +18,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($userList as $users)
+                        {{-- @foreach ($userList as $users)
                             <tr>
                                 <th scope="row" class="">
                                     <img style="height: 35px;width :35px;" src="{{ isset($users->imgprofile) ? asset('storage/'. $users->imgprofile) : asset('tamplate/img/undraw_profile.svg') }}" alt="" class="img-profile rounded-circle mr-2">
@@ -30,8 +30,8 @@
                                 <td class="align-middle text-center">{{ $users->late }}</td>
                                 <td class="align-middle text-center">{{ $users->total }}</td>
                             </tr>
-                        @endforeach
-                        {{-- @foreach ($users as $user)
+                        @endforeach --}}
+                        @foreach ($users as $user)
                             <tr>
                                 <th scope="row" class="">
                                     <img style="height: 35px;width :35px;" src="{{ isset($user->imgprofile) ? asset('storage/'. $user->imgprofile) : asset('tamplate/img/undraw_profile.svg') }}" alt="" class="img-profile rounded-circle mr-2">
@@ -61,7 +61,7 @@
                                     <td class="align-middle text-center">0</td>
                                 @endif
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

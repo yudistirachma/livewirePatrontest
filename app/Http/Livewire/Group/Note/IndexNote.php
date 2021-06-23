@@ -18,7 +18,7 @@ class IndexNote extends Component
 
     public function render()
     {
-        $notes = Note::where('group_id', '=', $this->group_id)->orderBy('created_at', 'desc')->paginate(4);
+        $notes = Note::where('group_id', '=', $this->group_id)->orderBy('created_at', 'desc')->paginate(12);
         $groupName = Group::where('id', '=', $this->group_id)->first()->segment;
 
         return view('livewire.group.note.index-note', compact('notes', 'groupName'))
