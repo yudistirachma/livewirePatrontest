@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'id' => '10001',
+                'id' => '12101',
                 'name' => 'rahma yudistira',
                 'email' => 'yudistira.anaga@gmail.com',
                 'password' => Hash::make('password'),
@@ -25,47 +25,145 @@ class UserSeeder extends Seeder
                 'status' => true
             ],
             [
-                'id' => '10002',
-                'name' => 'imam tantowi',
-                'email' => 'pasukanbodrek230@gmail.com',
+                'id' => '12102',
+                'name' => 'Imam tantowi',
+                'email' => 'aimelhazmi@gmail.com',
                 'password' => Hash::make('password'),
-                'phoneNum' => '1234567890123',
-                'ktp' => '1234567890123456',
-                'npwp' => '1234567890123456',
-                'status' => true
-
-            ],
-            [
-                'id' => '10003',
-                'name' => 'nazwasihab',
-                'email' => 'nazwasihab@gmail.com',
-                'password' => Hash::make('password'),
-                'phoneNum' => '1234567890121',
+                'phoneNum' => '081387964150',
                 'ktp' => '1234567890123456',
                 'npwp' => '1234567890123456',
                 'status' => true
             ],
             [
-                'id' => '10004',
-                'name' => 'karni ilias',
-                'email' => 'ilias@gmail.com',
+                'id' => '12103',
+                'name' => 'Abdul Muhit',
+                'email' => 'amuhit.51@gmail.com',
                 'password' => Hash::make('password'),
-                'phoneNum' => '1234567890121',
-                'ktp' => '1234567890123451',
-                'npwp' => '1234567890123451',
-                'status' => true
-
-            ],
-            [
-                'id' => '10005',
-                'name' => 'atut',
-                'email' => 'atut@gmail.com',
-                'password' => Hash::make('password'),
-                'phoneNum' => '1234567890126',
+                'phoneNum' => '085695054604',
                 'ktp' => '1234567890123456',
                 'npwp' => '1234567890123456',
-                'status' => false
+                'status' => true
             ],
+            [
+                'id' => '12104',
+                'name' => 'Samsul Bahri',
+                'email' => 'bahri7303@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12105',
+                'name' => 'Hamdu Alfaza',
+                'email' => 'HamduAlfaza@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12106',
+                'name' => 'Hendra malulitua',
+                'email' => 'Hendramalulitua@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12107',
+                'name' => 'Setia adi wangsa',
+                'email' => 'setiaadiwangsa@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12108',
+                'name' => 'ahmad baihaki',
+                'email' => 'ahmadbaihaki@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12109',
+                'name' => 'Aswari',
+                'email' => 'Aswari@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12110',
+                'name' => 'Wawan Saputra',
+                'email' => 'wawanSaputra@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12111',
+                'name' => 'Ilyas Iskandar',
+                'email' => 'ilyasIskandar@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12112',
+                'name' => 'Iif Fathulatif',
+                'email' => 'IifFathulatif@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12113',
+                'name' => 'Aldy Mandagi',
+                'email' => 'AldyMandagi@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],
+            [
+                'id' => '12114',
+                'name' => 'Vredo adisyah',
+                'email' => 'VredoAdisyah@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],        
+            [
+                'id' => '12115',
+                'name' => 'Roy Goozly',
+                'email' => 'RoyGoozly@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNum' => '083813852673',
+                'ktp' => '1234567890123456',
+                'npwp' => '1234567890123456',
+                'status' => true
+            ],        
         ]);
     }
 }
